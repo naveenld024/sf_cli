@@ -11,7 +11,7 @@ void main(List<String> arguments) async {
     ..addCommand('features')
     ..addCommand('init')
     ..addCommand('model')
-    ..addOption('file', abbr: 'f', help: 'The JSON file path for model generation',)
+    ..addOption('file', abbr: 'f', help: 'The JSON file path for model generation')
     ..addCommand('runner')
     ..addCommand('config')
     ..addOption('config-file', abbr: 'c', help: 'The configuration JSON file path')
@@ -60,6 +60,6 @@ void main(List<String> arguments) async {
   } else if (argResults['help'] == true || arguments.isEmpty) {
     print(parser.usage);
   } else {
-    print('Invalid command. Use either "features", "init", "model", "runner",cubit, or "config".\n Use --help for more information.');
+    print('Invalid command. Use either "features", "init", "model", "runner", or "config".');
   }
 }

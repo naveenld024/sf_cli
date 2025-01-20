@@ -11,7 +11,7 @@ void main(List<String> arguments) async {
     ..addCommand('features')
     ..addCommand('init')
     ..addCommand('model')
-    ..addOption('file', abbr: 'f', help: 'The JSON file path for model generation',)
+    ..addOption('file', abbr: 'f', help: 'The JSON file path for model generation',defaultsTo: )
     ..addCommand('runner')
     ..addCommand('config')
     ..addOption('config-file', abbr: 'c', help: 'The configuration JSON file path')

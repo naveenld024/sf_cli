@@ -9,27 +9,25 @@ import 'package:sf_cli/init.dart';
 void main(List<String> arguments) async {
   final parser = ArgParser()
     ..addCommand('features')
+    ..addOption('name', abbr: 'n', help: 'Name of the features')
     ..addCommand('init')
     ..addCommand('model')
-    ..addOption('file', abbr: 'f', help: 'The JSON file path for model generation',)
+    ..addOption('file', abbr: 'f', help: 'The JSON file path for model generation')
     ..addCommand('runner')
     ..addCommand('config')
     ..addOption('config-file', abbr: 'c', help: 'The configuration JSON file path')
     ..addCommand('cubit')
+    ..addOption('name', abbr: 'n', help: 'Name of the cubit')
     ..addFlag('help', abbr: 'h', help: 'Show help');
-
-  // Add name options to specific commands
-  parser.commands['features']?.addOption('name', abbr: 'n', help: 'Name of the feature');
-  parser.commands['cubit']?.addOption('name', abbr: 'n', help: 'Name of the cubit');
 
   ArgResults argResults = parser.parse(arguments);
 
   if (argResults.command?.name == 'features') {
-    String? featureName = argResults.command?['name'];
+    String? featureName = argResults['name'];
     if (featureName != null) {
       createFeature(featureName);
     } else {
-      print('Please provide a feature name using --name or -n');
+      print('Please provide a features name using --name or -n');
     }
   } else if (argResults.command?.name == 'init') {
     initializeProject();
@@ -46,12 +44,12 @@ void main(List<String> arguments) async {
   } else if (argResults.command?.name == 'config') {
     String? configFilePath = argResults['config-file'];
     if (configFilePath != null) {
-      await generateFromConfig(configFilePath);
+      await generateFromConfig(configFilePath); // Await the function call
     } else {
       print('Please provide the config file path using --config-file or -c option.');
     }
   } else if (argResults.command?.name == 'cubit') {
-    String? cubitName = argResults.command?['name'];
+    String? cubitName = argResults['name'];
     if (cubitName != null) {
       createCubitClass(cubitName);
     } else {
@@ -60,6 +58,6 @@ void main(List<String> arguments) async {
   } else if (argResults['help'] == true || arguments.isEmpty) {
     print(parser.usage);
   } else {
-    print('Invalid command. Use either "features", "init", "model", "runner",cubit, or "config".\n Use --help for more information.');
+    print('Invalid command. Use either "features", "init", "model", "runner", or "config".');
   }
 }
