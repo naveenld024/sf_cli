@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path/path.dart' as path;
-import 'generate_model.dart'; // Assuming generate_model.dart is in the same directory
+import 'generate_model.dart';
 
 Future<void> generateFromConfig(String configFilePath) async {
   final config = await readConfigFile(configFilePath);

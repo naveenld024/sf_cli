@@ -1,0 +1,35 @@
+{
+  "user_model": {
+    "model_class_relative_path": "example/models/user.json",
+    "end_point": "/api/users",
+    "method": "get",
+    "function_name": "getUsers",
+    "parameters": {
+      "page": "int",
+      "limit": "int",
+      "search": "String"
+    }
+  },
+  "product_model": {
+    "model_class_relative_path": "example/models/product.json",
+    "end_point": "/api/products",
+    "method": "post",
+    "function_name": "createProduct",
+    "parameters": {
+      "name": "String",
+      "price": "double",
+      "categoryId": "int"
+    }
+  },
+  "product_list": {
+    "model_class_relative_path": "example/models/product.json",
+    "end_point": "/api/products",
+    "method": "get",
+    "function_name": "getProducts",
+    "parameters": {
+      "category": "String",
+      "minPrice": "double",
+      "maxPrice": "double"
+    }
+  }
+}

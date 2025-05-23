@@ -1,0 +1,31 @@
+{
+  "id": 101,
+  "name": "Wireless Headphones",
+  "description": "High-quality wireless headphones with noise cancellation",
+  "price": 199.99,
+  "currency": "USD",
+  "category": {
+    "id": 5,
+    "name": "Electronics",
+    "slug": "electronics"
+  },
+  "specifications": {
+    "brand": "TechCorp",
+    "model": "WH-1000XM5",
+    "color": "Black",
+    "weight": "250g",
+    "features": ["Noise Cancellation", "Bluetooth 5.0", "30h Battery"]
+  },
+  "availability": {
+    "inStock": true,
+    "quantity": 50,
+    "warehouse": "US-EAST-1"
+  },
+  "images": [
+    "https://example.com/images/product1.jpg",
+    "https://example.com/images/product2.jpg"
+  ],
+  "tags": ["wireless", "headphones", "premium"],
+  "rating": 4.5,
+  "reviewCount": 128
+}

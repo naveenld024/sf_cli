@@ -1,6 +1,5 @@
-import 'package:test/test.dart';
-
 void main() {
+  // TODO: Add tests for sf_cli functionality
   // test('calculate', () {
   //   expect(calculate(), 42);
   // });

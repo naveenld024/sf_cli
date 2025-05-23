@@ -2,7 +2,7 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
-import '../lib/feature.dart';
+import 'package:sf_cli/feature.dart';
 
 void main() {
   group('Feature Creation Tests', () {

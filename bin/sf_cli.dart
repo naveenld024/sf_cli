@@ -2,7 +2,7 @@ import 'package:args/args.dart';
 import 'package:sf_cli/build_runners.dart';
 import 'package:sf_cli/cubit.dart';
 import 'package:sf_cli/feature.dart';
-import 'package:sf_cli/generate_from_config';
+import 'package:sf_cli/generate_from_config.dart';
 import 'package:sf_cli/generate_model.dart';
 import 'package:sf_cli/init.dart';
 
