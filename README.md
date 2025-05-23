@@ -1,5 +1,5 @@
 # SF CLI - Flutter Scaffolding Tool
-
+[![pub package](https://img.shields.io/pub/v/sf_cli.svg)](https://pub.dev/packages/sf_cli)
 A powerful command-line interface tool for Flutter developers that automates the creation of feature-based project structures, model generation from JSON, and BLoC pattern implementation.
 
 ## Features
