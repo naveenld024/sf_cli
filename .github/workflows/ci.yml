@@ -98,7 +98,7 @@ jobs:
 
     - name: Test documentation build
       run: |
-        cd docs
+        cd doc/docs
         docsify serve . --port 3000 &
         sleep 5
         curl -f http://localhost:3000 || exit 1
