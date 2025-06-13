@@ -100,7 +100,7 @@ class ${featureNameCapitalized}Screen extends StatelessWidget {
   createFileWithContent(
     path.join(
         featurePath, 'widgets', '${featureName.toLowerCase()}_widget.dart'),
-    '// TODO: Implement ${featureNameCapitalized} widget',
+    '// TODO: Implement $featureNameCapitalized widget',
   );
 
   createFileWithContent(

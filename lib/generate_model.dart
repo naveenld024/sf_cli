@@ -62,7 +62,7 @@ $responseClassName ${responseClassName}FromJson(String str) => $responseClassNam
 String ${responseClassName}ToJson($responseClassName data) => json.encode(data.toJson());
 
 @freezed
-class $responseClassName with _\$${responseClassName} {
+class $responseClassName with _\$$responseClassName {
     const factory $responseClassName({
         ${_generateConstructorFields(jsonMap)}
     }) = _$responseClassName;
@@ -79,7 +79,7 @@ String _generateNestedModelClass(Map<String, dynamic>? dataMap, String className
 
   return '''
 @freezed
-class $className with _\$${className} {
+class $className with _\$$className {
     const factory $className({
         ${_generateDateTimeConstructorFields(dataMap)}
     }) = _$className;
