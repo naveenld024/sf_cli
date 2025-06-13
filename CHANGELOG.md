@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2024-12-19
+
+### Added
+- **Comprehensive Documentation**: Complete documentation system using Docsify
+  - Interactive documentation website with modern UI
+  - API reference with detailed command explanations
+  - Architecture guide explaining clean architecture patterns
+  - Configuration guide for advanced usage
+  - Examples and quickstart tutorials
+  - Contributing guidelines for developers
+
+- **Enhanced CONFIG.JSON Setup**: Advanced configuration-based feature generation
+  - Support for complex feature scaffolding via JSON configuration
+  - Enhanced model generation with nested object support
+  - Automatic repository and service layer generation
+  - State management integration (BLoC/Cubit) through configuration
+  - Batch processing capabilities for multiple features
+  - Template-based code generation with customizable patterns
+
+### Improved
+- Better error handling and validation for configuration files
+- Enhanced CLI help system with more detailed command descriptions
+- Improved code generation templates for better maintainability
+
 ## [1.0.1] - 2024-06-10
 
 ### Changed
