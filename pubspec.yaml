@@ -1,10 +1,10 @@
 name: sf_cli
 description: A powerful Flutter CLI tool for scaffolding features, generating models, and managing project structure with clean architecture patterns.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/naveenld024/sf_cli
 repository: https://github.com/naveenld024/sf_cli
 issue_tracker: https://github.com/naveenld024/sf_cli/issues
-documentation: https://github.com/naveenld024/sf_cli#readme
+documentation: https://naveenld024.github.io/sf_cli/
 
 environment:
   sdk: ^3.4.3

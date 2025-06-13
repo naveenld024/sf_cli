@@ -1,20 +1,73 @@
-# SF CLI - Flutter Scaffolding Tool
-[![pub package](https://img.shields.io/pub/v/sf_cli.svg)](https://pub.dev/packages/sf_cli)
-[![Documentation](https://img.shields.io/badge/docs-docsify-blue.svg)](https://naveenld024.github.io/sf_cli/)
-[![GitHub](https://img.shields.io/github/stars/naveenld024/sf_cli?style=social)](https://github.com/naveenld024/sf_cli)
+<div align="center">
 
-A powerful command-line interface tool for Flutter developers that automates the creation of feature-based project structures, model generation from JSON, and BLoC pattern implementation.
+# 🚀 SF CLI - Flutter Scaffolding Tool
 
-## Features
+[![pub package](https://img.shields.io/pub/v/sf_cli.svg?style=for-the-badge&color=blue)](https://pub.dev/packages/sf_cli)
+[![Documentation](https://img.shields.io/badge/docs-docsify-blue.svg?style=for-the-badge)](https://naveenld024.github.io/sf_cli/)
+[![GitHub Stars](https://img.shields.io/github/stars/naveenld024/sf_cli?style=for-the-badge&color=yellow)](https://github.com/naveenld024/sf_cli)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![Dart Version](https://img.shields.io/badge/dart-%5E3.4.3-blue.svg?style=for-the-badge&logo=dart)](https://dart.dev)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/naveenld024/sf_cli/ci.yml?style=for-the-badge)](https://github.com/naveenld024/sf_cli/actions)
 
-- 🏗️ **Feature Scaffolding**: Generate complete feature structures with feature folder structures
-- 📱 **Project Initialization**: Set up Flutter projects with predefined folder structures
-- 🔄 **Model Generation**: Create Dart model classes from JSON files with complex nested support
-- 🧩 **BLoC/Cubit Generation**: Generate BLoC cubit and bloc classes with states following best practices (supports both Equatable and Freezed)
-- ⚙️ **Build Runner Integration**: Execute build_runner commands with proper configurations
-- 📋 **Config-based Generation**: Generate multiple components from configuration files
+**A powerful command-line interface tool for Flutter developers that automates the creation of feature-based project structures, model generation from JSON, and BLoC pattern implementation.**
 
-## Installation
+*Boost your Flutter development productivity with automated scaffolding and clean architecture patterns.*
+
+[📖 **Documentation**](https://naveenld024.github.io/sf_cli/) • [🚀 **Quick Start**](#quick-start) • [💡 **Examples**](#examples) • [🤝 **Contributing**](#contributing)
+
+</div>
+
+---
+
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🏗️ **Project Scaffolding**
+- ✅ Complete feature-based architecture setup
+- ✅ Clean folder structure generation
+- ✅ Predefined templates for common patterns
+- ✅ Domain-driven design structure
+
+### 🤖 **Smart Code Generation**
+- ✅ Dart model classes from JSON
+- ✅ Complex nested object support
+- ✅ Null safety and type safety
+- ✅ Automatic serialization methods
+
+</td>
+<td width="50%">
+
+### 🧩 **State Management**
+- ✅ BLoC/Cubit pattern implementation
+- ✅ Equatable and Freezed support
+- ✅ Best practices enforcement
+- ✅ Immutable state management
+
+### ⚙️ **Developer Tools**
+- ✅ Build runner integration
+- ✅ Config-based generation
+- ✅ Enhanced feature creation
+- ✅ Dependency injection setup
+
+</td>
+</tr>
+</table>
+
+## 🎯 Why Choose SF CLI?
+
+> **"From idea to implementation in minutes, not hours"**
+
+- **🚀 Rapid Development**: Generate complete features with a single command
+- **📐 Clean Architecture**: Enforces best practices and maintainable code structure
+- **🔧 Type Safety**: Full null safety and strong typing support
+- **🎨 Customizable**: Flexible configuration options for different project needs
+- **📚 Well Documented**: Comprehensive documentation with examples
+- **🧪 Battle Tested**: Used in production Flutter applications
+
+## 📦 Installation
 
 ### Global Installation (Recommended)
 
@@ -37,7 +90,34 @@ Then run:
 dart pub get
 ```
 
-## Usage
+### Verify Installation
+
+```bash
+sf_cli --version
+```
+
+## 🚀 Quick Start
+
+Get up and running with SF CLI in under 2 minutes:
+
+```bash
+# 1. Install SF CLI globally
+dart pub global activate sf_cli
+
+# 2. Initialize your Flutter project structure
+sf_cli init
+
+# 3. Generate your first feature
+sf_cli features --name user_profile --freezed
+
+# 4. Generate models from JSON
+sf_cli model --file path/to/user.json
+
+# 5. Run build runner to generate code
+sf_cli runner
+```
+
+## 📋 Usage
 
 ### Initialize a New Flutter Project Structure
 
@@ -182,7 +262,7 @@ This new command generates a complete feature structure including:
 
 See `example/ENHANCED_FEATURE_GENERATION.md` for detailed documentation and `example/enhanced_feature_config.json` for a complete example.
 
-## Command Reference
+## 📊 Command Reference
 
 | Command | Description | Options |
 |---------|-------------|---------|
@@ -195,12 +275,90 @@ See `example/ENHANCED_FEATURE_GENERATION.md` for detailed documentation and `exa
 | `config` | Generate from config | `--config-file, -c`: Config file path |
 | `generate-feature` | Generate complete feature from enhanced config | `--config, -c`: Enhanced config file path<br>`--freezed`: Use Freezed for models/state |
 
-## Requirements
+## 💡 Examples
 
-- Dart SDK: ^3.4.3
-- Flutter: Compatible with latest stable versions
+<details>
+<summary><strong>🏗️ Complete Project Setup</strong></summary>
 
-## Architecture Patterns
+```bash
+# Initialize a new Flutter project with SF CLI structure
+flutter create my_app
+cd my_app
+sf_cli init
+
+# Generate authentication feature with Freezed
+sf_cli features --name auth --freezed
+
+# Generate user profile feature
+sf_cli features --name user_profile --freezed
+
+# Generate models from API responses
+sf_cli model --file api_responses/user.json
+sf_cli model --file api_responses/auth.json
+
+# Run build runner to generate code
+sf_cli runner
+```
+
+</details>
+
+<details>
+<summary><strong>🤖 Model Generation from Complex JSON</strong></summary>
+
+Given a complex JSON structure:
+```json
+{
+  "user": {
+    "id": 1,
+    "profile": {
+      "name": "John Doe",
+      "avatar": "https://example.com/avatar.jpg",
+      "settings": {
+        "theme": "dark",
+        "notifications": true,
+        "preferences": ["coding", "reading"]
+      }
+    },
+    "posts": [
+      {
+        "id": 1,
+        "title": "My First Post",
+        "tags": ["flutter", "dart"]
+      }
+    ]
+  }
+}
+```
+
+Generate with:
+```bash
+sf_cli model --file user_data.json
+```
+
+This creates properly nested Dart classes with full type safety.
+
+</details>
+
+<details>
+<summary><strong>🧩 State Management Setup</strong></summary>
+
+```bash
+# Generate authentication cubit with Freezed
+sf_cli cubit --name auth --freezed
+
+# Generate user management bloc with Freezed
+sf_cli bloc --name user_management --freezed
+
+# The generated files include:
+# - Immutable state classes
+# - Proper event handling
+# - Type-safe state transitions
+# - Built-in equality comparisons
+```
+
+</details>
+
+## 🏛️ Architecture Patterns
 
 This tool promotes clean architecture patterns:
 
@@ -209,19 +367,51 @@ This tool promotes clean architecture patterns:
 - **Presentation Layer**: Screens and widgets
 - **Shared Components**: Reusable utilities and constants
 
-## Contributing
+## 📋 Requirements
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- **Dart SDK**: ^3.4.3
+- **Flutter**: Compatible with latest stable versions
+- **Operating System**: Windows, macOS, Linux
 
-## License
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create your feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit your changes** (`git commit -m 'Add some amazing feature'`)
+4. **Push to the branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/naveenld024/sf_cli.git
+cd sf_cli
+
+# Install dependencies
+dart pub get
+
+# Run tests
+dart test
+
+# Build the project
+dart compile exe bin/sf_cli.dart
+```
+
+### Code Style
+
+- Follow [Dart style guide](https://dart.dev/guides/language/effective-dart/style)
+- Use meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Documentation
+## 📖 Documentation
 
 📖 **[Complete Documentation](https://naveenld024.github.io/sf_cli/)** - Comprehensive guides, examples, and API reference
 
@@ -232,8 +422,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Examples & Tutorials](https://naveenld024.github.io/sf_cli/#/examples)
 - [Architecture Guide](https://naveenld024.github.io/sf_cli/#/architecture)
 
-## Support
+## 🆘 Support
 
 - 📖 [Documentation](https://naveenld024.github.io/sf_cli/)
 - 🐛 [Issue Tracker](https://github.com/naveenld024/sf_cli/issues)
 - 💬 [Discussions](https://github.com/naveenld024/sf_cli/discussions)
+- 📧 [Email Support](mailto:naveenld024@gmail.com)
+
+## 🌟 Show Your Support
+
+If this project helped you, please consider:
+
+- ⭐ **Starring** the repository
+- 🐛 **Reporting** bugs and issues
+- 💡 **Suggesting** new features
+- 📖 **Contributing** to documentation
+- 🔄 **Sharing** with other Flutter developers
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Naveen](https://github.com/naveenld024)**
+
+*Happy Flutter Development! 🚀*
+
+</div>
+
+
