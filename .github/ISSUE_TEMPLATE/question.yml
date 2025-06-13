@@ -1,0 +1,76 @@
+name: ❓ Question
+description: Ask a question about SF CLI usage or functionality
+title: "[Question]: "
+labels: ["question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about SF CLI? We're here to help! Please fill out the form below.
+        
+        💡 **Tip**: For general discussions, consider using [GitHub Discussions](https://github.com/naveenld024/sf_cli/discussions) instead.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What is your question about?
+      options:
+        - Installation & Setup
+        - Command Usage
+        - Code Generation
+        - Project Structure
+        - Configuration
+        - Best Practices
+        - Troubleshooting
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: "How do I..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide any relevant context about your project or use case.
+      placeholder: "I'm working on a Flutter app that..."
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What Have You Tried?
+      description: What have you already tried to solve this?
+      placeholder: "I tried..."
+
+  - type: input
+    id: version
+    attributes:
+      label: SF CLI Version
+      description: What version of SF CLI are you using?
+      placeholder: "1.0.1"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other information that might be helpful.
+      placeholder: "Additional details..."
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have checked the documentation
+          required: true
+        - label: I have searched existing issues and discussions
+          required: true

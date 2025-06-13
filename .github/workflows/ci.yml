@@ -1,0 +1,126 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        dart-version: ['3.4.3', 'stable']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Dart
+      uses: dart-lang/setup-dart@v1
+      with:
+        dart-version: ${{ matrix.dart-version }}
+
+    - name: Print Dart version
+      run: dart --version
+
+    - name: Install dependencies
+      run: dart pub get
+
+    - name: Verify formatting
+      run: dart format --output=none --set-exit-if-changed .
+
+    - name: Analyze project source
+      run: dart analyze --fatal-infos
+
+    - name: Run tests
+      run: dart test
+
+    - name: Test CLI installation
+      run: dart pub global activate --source path .
+
+    - name: Test CLI commands
+      run: |
+        dart pub global run sf_cli:sf_cli --help
+        dart pub global run sf_cli:sf_cli --version
+
+  coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Dart
+      uses: dart-lang/setup-dart@v1
+      with:
+        dart-version: 'stable'
+
+    - name: Install dependencies
+      run: dart pub get
+
+    - name: Install coverage
+      run: dart pub global activate coverage
+
+    - name: Run tests with coverage
+      run: dart test --coverage=coverage
+
+    - name: Format coverage
+      run: dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: coverage/lcov.info
+        fail_ci_if_error: false
+
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install docsify-cli
+      run: npm install -g docsify-cli
+
+    - name: Test documentation build
+      run: |
+        cd docs
+        docsify serve . --port 3000 &
+        sleep 5
+        curl -f http://localhost:3000 || exit 1
+        pkill -f docsify
+
+  publish-dry-run:
+    name: Publish Dry Run
+    runs-on: ubuntu-latest
+    needs: [test, coverage]
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Dart
+      uses: dart-lang/setup-dart@v1
+      with:
+        dart-version: 'stable'
+
+    - name: Install dependencies
+      run: dart pub get
+
+    - name: Dry run pub publish
+      run: dart pub publish --dry-run
