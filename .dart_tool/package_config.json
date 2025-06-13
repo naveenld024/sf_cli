@@ -308,10 +308,9 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2025-05-23T04:52:12.326687Z",
   "generator": "pub",
-  "generatorVersion": "3.7.2",
+  "generatorVersion": "3.8.1",
   "flutterRoot": "file:///Volumes/SSD/development/flutter",
-  "flutterVersion": "3.29.2",
+  "flutterVersion": "3.32.1",
   "pubCache": "file:///Users/naveen/.pub-cache"
 }
