@@ -1,0 +1,17 @@
+{
+  "id": 5,
+  "name": "Electronics",
+  "slug": "electronics",
+  "description": "Electronic devices and gadgets",
+  "parentId": null,
+  "isActive": true,
+  "sortOrder": 1,
+  "imageUrl": "https://example.com/categories/electronics.jpg",
+  "metadata": {
+    "seoTitle": "Electronics Category",
+    "seoDescription": "Browse our wide selection of electronic devices",
+    "keywords": ["electronics", "gadgets", "devices"]
+  },
+  "createdAt": "2024-01-15T08:00:00Z",
+  "updatedAt": "2024-01-20T10:30:00Z"
+}

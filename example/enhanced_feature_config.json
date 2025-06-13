@@ -1,0 +1,76 @@
+{
+  "feature_name": "product_catalog",
+  "description": "A complete product catalog feature with listing, details, and search functionality",
+  "models": [
+    {
+      "name": "product",
+      "json_file_path": "example/models/product.json",
+      "use_freezed": true
+    },
+    {
+      "name": "category",
+      "json_file_path": "example/models/category.json",
+      "use_freezed": true
+    }
+  ],
+  "endpoints": [
+    {
+      "name": "get_products",
+      "endpoint": "/api/products",
+      "method": "GET",
+      "function_name": "getProducts",
+      "parameters": {
+        "page": "int",
+        "limit": "int",
+        "category_id": "int"
+      },
+      "return_type": "ResponseResult<Product>"
+    },
+    {
+      "name": "get_product_details",
+      "endpoint": "/api/products/{id}",
+      "method": "GET",
+      "function_name": "getProductDetails",
+      "parameters": {
+        "id": "int"
+      },
+      "return_type": "ResponseResult<Product>"
+    },
+    {
+      "name": "search_products",
+      "endpoint": "/api/products/search",
+      "method": "GET",
+      "function_name": "searchProducts",
+      "parameters": {
+        "query": "String",
+        "category": "String",
+        "min_price": "double",
+        "max_price": "double"
+      },
+      "return_type": "ResponseResult<Product>"
+    },
+    {
+      "name": "create_product",
+      "endpoint": "/api/products",
+      "method": "POST",
+      "function_name": "createProduct",
+      "parameters": {
+        "name": "String",
+        "description": "String",
+        "price": "double",
+        "category_id": "int"
+      },
+      "return_type": "ResponseResult<Product>"
+    }
+  ],
+  "ui_config": {
+    "has_list_screen": true,
+    "has_detail_screen": true,
+    "has_form_screen": true,
+    "custom_widgets": [
+      "product_card",
+      "product_filter",
+      "price_range_slider"
+    ]
+  }
+}

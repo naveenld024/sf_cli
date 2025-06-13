@@ -4,6 +4,7 @@ import 'package:sf_cli/cubit.dart';
 import 'package:sf_cli/bloc.dart';
 import 'package:sf_cli/feature.dart';
 import 'package:sf_cli/generate_from_config.dart';
+import 'package:sf_cli/generate_feature_from_config.dart';
 import 'package:sf_cli/generate_model.dart';
 import 'package:sf_cli/init.dart';
 
@@ -16,6 +17,7 @@ void main(List<String> arguments) async {
     ..addCommand('runner')
     ..addCommand('config')
     ..addOption('config-file', abbr: 'c', help: 'The configuration JSON file path')
+    ..addCommand('generate-feature')
     ..addCommand('cubit')
     ..addCommand('bloc')
     ..addFlag('help', abbr: 'h', help: 'Show help');
@@ -23,6 +25,8 @@ void main(List<String> arguments) async {
   // Add name options to specific commands
   parser.commands['features']?.addOption('name', abbr: 'n', help: 'Name of the feature');
   parser.commands['features']?.addFlag('freezed', help: 'Generate freezed cubit and state');
+  parser.commands['generate-feature']?.addOption('config', abbr: 'c', help: 'Configuration file path for feature generation');
+  parser.commands['generate-feature']?.addFlag('freezed', help: 'Generate freezed models and state management');
   parser.commands['cubit']?.addOption('name', abbr: 'n', help: 'Name of the cubit');
   parser.commands['cubit']?.addFlag('freezed', help: 'Generate freezed cubit and state');
   parser.commands['bloc']?.addOption('name', abbr: 'n', help: 'Name of the bloc');
@@ -57,6 +61,14 @@ void main(List<String> arguments) async {
     } else {
       print('Please provide the config file path using --config-file or -c option.');
     }
+  } else if (argResults.command?.name == 'generate-feature') {
+    String? configFilePath = argResults.command?['config'];
+    bool useFreezed = argResults.command?['freezed'] ?? false;
+    if (configFilePath != null) {
+      await generateFeatureFromConfig(configFilePath, useFreezed: useFreezed);
+    } else {
+      print('Please provide the config file path using --config or -c option.');
+    }
   } else if (argResults.command?.name == 'cubit') {
     String? cubitName = argResults.command?['name'];
     bool useFreezed = argResults.command?['freezed'] ?? false;
@@ -76,6 +88,6 @@ void main(List<String> arguments) async {
   } else if (argResults['help'] == true || arguments.isEmpty) {
     print(parser.usage);
   } else {
-    print('Invalid command. Use either "features", "init", "model", "runner", "cubit", "bloc", or "config".\n Use --help for more information.');
+    print('Invalid command. Use either "features", "init", "model", "runner", "cubit", "bloc", "config", or "generate-feature".\n Use --help for more information.');
   }
 }

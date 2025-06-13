@@ -158,6 +158,27 @@ Example configuration:
 }
 ```
 
+### Generate Complete Feature from Enhanced Configuration
+
+```bash
+# Generate complete feature with freezed models and state management (recommended)
+sf_cli generate-feature --config path/to/enhanced_config.json --freezed
+
+# Generate feature with regular models and state management
+sf_cli generate-feature --config path/to/enhanced_config.json
+# or
+sf_cli generate-feature -c path/to/enhanced_config.json --freezed
+```
+
+This new command generates a complete feature structure including:
+- Freezed models with JSON serialization
+- Repository and service layers with dependency injection
+- Cubit-based state management
+- UI screens and widgets
+- Proper error handling and loading states
+
+See `example/ENHANCED_FEATURE_GENERATION.md` for detailed documentation and `example/enhanced_feature_config.json` for a complete example.
+
 ## Command Reference
 
 | Command | Description | Options |
@@ -169,6 +190,7 @@ Example configuration:
 | `bloc` | Generate BLoC bloc | `--name, -n`: Bloc name<br>`--freezed`: Use Freezed for bloc/event/state |
 | `runner` | Run build_runner | None |
 | `config` | Generate from config | `--config-file, -c`: Config file path |
+| `generate-feature` | Generate complete feature from enhanced config | `--config, -c`: Enhanced config file path<br>`--freezed`: Use Freezed for models/state |
 
 ## Requirements
 

@@ -1,0 +1,41 @@
+{
+  "feature_name": "user_profile",
+  "description": "Simple user profile management feature",
+  "models": [
+    {
+      "name": "user",
+      "json_file_path": "example/models/user.json",
+      "use_freezed": false
+    }
+  ],
+  "endpoints": [
+    {
+      "name": "get_user_profile",
+      "endpoint": "/api/user/profile",
+      "method": "GET",
+      "function_name": "getUserProfile",
+      "parameters": {
+        "user_id": "int"
+      },
+      "return_type": "ResponseResult<User>"
+    },
+    {
+      "name": "update_user_profile",
+      "endpoint": "/api/user/profile",
+      "method": "PUT",
+      "function_name": "updateUserProfile",
+      "parameters": {
+        "user_id": "int",
+        "name": "String",
+        "email": "String"
+      },
+      "return_type": "ResponseResult<User>"
+    }
+  ],
+  "ui_config": {
+    "has_list_screen": false,
+    "has_detail_screen": false,
+    "has_form_screen": true,
+    "custom_widgets": ["profile_avatar", "profile_form"]
+  }
+}
