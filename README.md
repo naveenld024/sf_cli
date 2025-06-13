@@ -1,5 +1,8 @@
 # SF CLI - Flutter Scaffolding Tool
 [![pub package](https://img.shields.io/pub/v/sf_cli.svg)](https://pub.dev/packages/sf_cli)
+[![Documentation](https://img.shields.io/badge/docs-docsify-blue.svg)](https://naveenld024.github.io/sf_cli/)
+[![GitHub](https://img.shields.io/github/stars/naveenld024/sf_cli?style=social)](https://github.com/naveenld024/sf_cli)
+
 A powerful command-line interface tool for Flutter developers that automates the creation of feature-based project structures, model generation from JSON, and BLoC pattern implementation.
 
 ## Features
@@ -218,8 +221,19 @@ This tool promotes clean architecture patterns:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Documentation
+
+📖 **[Complete Documentation](https://naveenld024.github.io/sf_cli/)** - Comprehensive guides, examples, and API reference
+
+### Quick Links
+- [Installation Guide](https://naveenld024.github.io/sf_cli/#/installation)
+- [Quick Start](https://naveenld024.github.io/sf_cli/#/quickstart)
+- [Command Reference](https://naveenld024.github.io/sf_cli/#/commands)
+- [Examples & Tutorials](https://naveenld024.github.io/sf_cli/#/examples)
+- [Architecture Guide](https://naveenld024.github.io/sf_cli/#/architecture)
+
 ## Support
 
-- 📖 [Documentation](https://github.com/your_username/sf_cli#readme)
-- 🐛 [Issue Tracker](https://github.com/your_username/sf_cli/issues)
-- 💬 [Discussions](https://github.com/your_username/sf_cli/discussions)
+- 📖 [Documentation](https://naveenld024.github.io/sf_cli/)
+- 🐛 [Issue Tracker](https://github.com/naveenld024/sf_cli/issues)
+- 💬 [Discussions](https://github.com/naveenld024/sf_cli/discussions)
