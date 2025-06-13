@@ -2,7 +2,7 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
 
-void createFeature(String featureName) {
+void createFeature(String featureName, {bool useFreezed = false}) {
   final featurePath = path.join('lib', 'features', featureName.toLowerCase());
   final featureNameCapitalized = toPascalCase(featureName.toLowerCase());
 
@@ -50,33 +50,11 @@ class ${featureNameCapitalized}Service implements ${featureNameCapitalized}Repos
 }''',
   );
 
-  createFileWithContent(
-    path.join(featurePath, 'logic', featureName.toLowerCase(),
-        '${featureName.toLowerCase()}_cubit.dart'),
-    '''import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-
-part '${featureName.toLowerCase()}_state.dart';
-
-class ${featureNameCapitalized}Cubit extends Cubit<${featureNameCapitalized}State> {
-  ${featureNameCapitalized}Cubit() : super(${featureNameCapitalized}Initial());
-}''',
-  );
-
-  createFileWithContent(
-    path.join(featurePath, 'logic', featureName.toLowerCase(),
-        '${featureName.toLowerCase()}_state.dart'),
-    '''part of '${featureName.toLowerCase()}_cubit.dart';
-
-sealed class ${featureNameCapitalized}State extends Equatable {
-  const ${featureNameCapitalized}State();
-  
-  @override
-  List<Object> get props => [];
-}
-
-final class ${featureNameCapitalized}Initial extends ${featureNameCapitalized}State {}''',
-  );
+  if (useFreezed) {
+    _createFreezedCubitFiles(featurePath, featureName, featureNameCapitalized);
+  } else {
+    _createRegularCubitFiles(featurePath, featureName, featureNameCapitalized);
+  }
 
   createFileWithContent(
     path.join(
@@ -117,12 +95,72 @@ class ${featureNameCapitalized}Screen extends StatelessWidget {
 }''');
 
   print(
-      "Feature folder structure and files created for $featureNameCapitalized!");
+      "Feature folder structure and files created for $featureNameCapitalized${useFreezed ? ' (with Freezed)' : ''}!");
 }
 
 void createFileWithContent(String filePath, String content) {
   final file = File(filePath);
   file.writeAsStringSync(content);
+}
+
+void _createRegularCubitFiles(String featurePath, String featureName, String featureNameCapitalized) {
+  createFileWithContent(
+    path.join(featurePath, 'logic', featureName.toLowerCase(),
+        '${featureName.toLowerCase()}_cubit.dart'),
+    '''import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+
+part '${featureName.toLowerCase()}_state.dart';
+
+class ${featureNameCapitalized}Cubit extends Cubit<${featureNameCapitalized}State> {
+  ${featureNameCapitalized}Cubit() : super(${featureNameCapitalized}Initial());
+}''',
+  );
+
+  createFileWithContent(
+    path.join(featurePath, 'logic', featureName.toLowerCase(),
+        '${featureName.toLowerCase()}_state.dart'),
+    '''part of '${featureName.toLowerCase()}_cubit.dart';
+
+sealed class ${featureNameCapitalized}State extends Equatable {
+  const ${featureNameCapitalized}State();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ${featureNameCapitalized}Initial extends ${featureNameCapitalized}State {}''',
+  );
+}
+
+void _createFreezedCubitFiles(String featurePath, String featureName, String featureNameCapitalized) {
+  createFileWithContent(
+    path.join(featurePath, 'logic', featureName.toLowerCase(),
+        '${featureName.toLowerCase()}_cubit.dart'),
+    '''import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${featureName.toLowerCase()}_state.dart';
+part '${featureName.toLowerCase()}_cubit.freezed.dart';
+
+class ${featureNameCapitalized}Cubit extends Cubit<${featureNameCapitalized}State> {
+  ${featureNameCapitalized}Cubit() : super(const ${featureNameCapitalized}State.initial());
+}''',
+  );
+
+  createFileWithContent(
+    path.join(featurePath, 'logic', featureName.toLowerCase(),
+        '${featureName.toLowerCase()}_state.dart'),
+    '''part of '${featureName.toLowerCase()}_cubit.dart';
+
+@freezed
+class ${featureNameCapitalized}State with _\$${featureNameCapitalized}State {
+  const factory ${featureNameCapitalized}State.initial() = _Initial;
+  const factory ${featureNameCapitalized}State.loading() = _Loading;
+  const factory ${featureNameCapitalized}State.success() = _Success;
+  const factory ${featureNameCapitalized}State.error(String message) = _Error;
+}''',
+  );
 }
 
 String toPascalCase(String input) {

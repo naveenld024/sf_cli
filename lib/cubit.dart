@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
 
-void createCubitClass(String cubitName) {
+void createCubitClass(String cubitName, {bool useFreezed = false}) {
   final cubitPath = path.join('lib', 'features', cubitName.toLowerCase());
   final cubitNameCapitalized = _toPascalCase(cubitName.toLowerCase());
 
@@ -19,6 +19,16 @@ void createCubitClass(String cubitName) {
   // Ensure the feature directory exists
   Directory(cubitPath).createSync(recursive: true);
 
+  if (useFreezed) {
+    _createFreezedCubitFiles(cubitName, cubitNameCapitalized, cubitFilePath, stateFilePath);
+  } else {
+    _createRegularCubitFiles(cubitName, cubitNameCapitalized, cubitFilePath, stateFilePath);
+  }
+
+  print("Cubit files created for $cubitNameCapitalized${useFreezed ? ' (with Freezed)' : ''}!");
+}
+
+void _createRegularCubitFiles(String cubitName, String cubitNameCapitalized, String cubitFilePath, String stateFilePath) {
   // Create Cubit file
   _createFileWithContent(
     cubitFilePath,
@@ -46,8 +56,36 @@ sealed class ${cubitNameCapitalized}State extends Equatable {
 
 final class ${cubitNameCapitalized}Initial extends ${cubitNameCapitalized}State {}''',
   );
+}
 
-  print("Cubit files created for $cubitNameCapitalized!");
+void _createFreezedCubitFiles(String cubitName, String cubitNameCapitalized, String cubitFilePath, String stateFilePath) {
+  // Create Cubit file
+  _createFileWithContent(
+    cubitFilePath,
+    '''import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${cubitName.toLowerCase()}_state.dart';
+part '${cubitName.toLowerCase()}_cubit.freezed.dart';
+
+class ${cubitNameCapitalized}Cubit extends Cubit<${cubitNameCapitalized}State> {
+  ${cubitNameCapitalized}Cubit() : super(const ${cubitNameCapitalized}State.initial());
+}''',
+  );
+
+  // Create State file
+  _createFileWithContent(
+    stateFilePath,
+    '''part of '${cubitName.toLowerCase()}_cubit.dart';
+
+@freezed
+class ${cubitNameCapitalized}State with _\$${cubitNameCapitalized}State {
+  const factory ${cubitNameCapitalized}State.initial() = _Initial;
+  const factory ${cubitNameCapitalized}State.loading() = _Loading;
+  const factory ${cubitNameCapitalized}State.success() = _Success;
+  const factory ${cubitNameCapitalized}State.error(String message) = _Error;
+}''',
+  );
 }
 
 void _createFileWithContent(String filePath, String content) {

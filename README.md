@@ -7,7 +7,7 @@ A powerful command-line interface tool for Flutter developers that automates the
 - 🏗️ **Feature Scaffolding**: Generate complete feature structures with feature folder structures
 - 📱 **Project Initialization**: Set up Flutter projects with predefined folder structures
 - 🔄 **Model Generation**: Create Dart model classes from JSON files with complex nested support
-- 🧩 **BLoC/Cubit Generation**: Generate BLoC cubit classes with states following best practices
+- 🧩 **BLoC/Cubit Generation**: Generate BLoC cubit and bloc classes with states following best practices (supports both Equatable and Freezed)
 - ⚙️ **Build Runner Integration**: Execute build_runner commands with proper configurations
 - 📋 **Config-based Generation**: Generate multiple components from configuration files
 
@@ -53,6 +53,9 @@ This creates a comprehensive folder structure including:
 sf_cli features --name user_profile
 # or
 sf_cli features -n user_profile
+
+# Generate with Freezed cubit and state
+sf_cli features --name user_profile --freezed
 ```
 
 Creates a complete feature structure:
@@ -103,9 +106,25 @@ Generates a Dart model class with:
 sf_cli cubit --name authentication
 # or
 sf_cli cubit -n authentication
+
+# Generate with Freezed
+sf_cli cubit --name authentication --freezed
 ```
 
-Creates cubit and state files with proper BLoC patterns.
+Creates cubit and state files with proper BLoC patterns. Use `--freezed` flag to generate freezed variants with immutable state classes.
+
+### Generate BLoC
+
+```bash
+sf_cli bloc --name authentication
+# or
+sf_cli bloc -n authentication
+
+# Generate with Freezed
+sf_cli bloc --name authentication --freezed
+```
+
+Creates bloc, event, and state files with proper BLoC patterns. Use `--freezed` flag to generate freezed variants with immutable event and state classes.
 
 ### Run Build Runner
 
@@ -144,9 +163,10 @@ Example configuration:
 | Command | Description | Options |
 |---------|-------------|---------|
 | `init` | Initialize project structure | None |
-| `features` | Generate feature scaffold | `--name, -n`: Feature name |
+| `features` | Generate feature scaffold | `--name, -n`: Feature name<br>`--freezed`: Use Freezed for cubit/state |
 | `model` | Generate model from JSON | `--file, -f`: JSON file path |
-| `cubit` | Generate BLoC cubit | `--name, -n`: Cubit name |
+| `cubit` | Generate BLoC cubit | `--name, -n`: Cubit name<br>`--freezed`: Use Freezed for cubit/state |
+| `bloc` | Generate BLoC bloc | `--name, -n`: Bloc name<br>`--freezed`: Use Freezed for bloc/event/state |
 | `runner` | Run build_runner | None |
 | `config` | Generate from config | `--config-file, -c`: Config file path |
 

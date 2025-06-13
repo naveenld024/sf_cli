@@ -1,6 +1,7 @@
 import 'package:args/args.dart';
 import 'package:sf_cli/build_runners.dart';
 import 'package:sf_cli/cubit.dart';
+import 'package:sf_cli/bloc.dart';
 import 'package:sf_cli/feature.dart';
 import 'package:sf_cli/generate_from_config.dart';
 import 'package:sf_cli/generate_model.dart';
@@ -16,18 +17,24 @@ void main(List<String> arguments) async {
     ..addCommand('config')
     ..addOption('config-file', abbr: 'c', help: 'The configuration JSON file path')
     ..addCommand('cubit')
+    ..addCommand('bloc')
     ..addFlag('help', abbr: 'h', help: 'Show help');
 
   // Add name options to specific commands
   parser.commands['features']?.addOption('name', abbr: 'n', help: 'Name of the feature');
+  parser.commands['features']?.addFlag('freezed', help: 'Generate freezed cubit and state');
   parser.commands['cubit']?.addOption('name', abbr: 'n', help: 'Name of the cubit');
+  parser.commands['cubit']?.addFlag('freezed', help: 'Generate freezed cubit and state');
+  parser.commands['bloc']?.addOption('name', abbr: 'n', help: 'Name of the bloc');
+  parser.commands['bloc']?.addFlag('freezed', help: 'Generate freezed bloc and event');
 
   ArgResults argResults = parser.parse(arguments);
 
   if (argResults.command?.name == 'features') {
     String? featureName = argResults.command?['name'];
+    bool useFreezed = argResults.command?['freezed'] ?? false;
     if (featureName != null) {
-      createFeature(featureName);
+      createFeature(featureName, useFreezed: useFreezed);
     } else {
       print('Please provide a feature name using --name or -n');
     }
@@ -52,14 +59,23 @@ void main(List<String> arguments) async {
     }
   } else if (argResults.command?.name == 'cubit') {
     String? cubitName = argResults.command?['name'];
+    bool useFreezed = argResults.command?['freezed'] ?? false;
     if (cubitName != null) {
-      createCubitClass(cubitName);
+      createCubitClass(cubitName, useFreezed: useFreezed);
     } else {
       print('Please provide a cubit name using --name or -n');
+    }
+  } else if (argResults.command?.name == 'bloc') {
+    String? blocName = argResults.command?['name'];
+    bool useFreezed = argResults.command?['freezed'] ?? false;
+    if (blocName != null) {
+      createBlocClass(blocName, useFreezed: useFreezed);
+    } else {
+      print('Please provide a bloc name using --name or -n');
     }
   } else if (argResults['help'] == true || arguments.isEmpty) {
     print(parser.usage);
   } else {
-    print('Invalid command. Use either "features", "init", "model", "runner",cubit, or "config".\n Use --help for more information.');
+    print('Invalid command. Use either "features", "init", "model", "runner", "cubit", "bloc", or "config".\n Use --help for more information.');
   }
 }
