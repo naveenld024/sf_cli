@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2025-01-20
+
+### Fixed
+- **Help System**: Complete overhaul of the CLI help functionality
+  - Fixed help command not showing available commands and descriptions
+  - Help now displays all commands with proper descriptions instead of just global options
+  - Resolved argument parser structure issues that prevented proper help display
+
+### Added
+- **Comprehensive Help Display**: Professional CLI help system
+  - Main help shows all commands, descriptions, examples, and documentation links
+  - Individual command help with detailed usage syntax and examples
+  - Version flag (`--version`) to display current CLI version
+  - Better error messages that guide users to correct usage
+
+### Improved
+- **CLI User Experience**: Enhanced command-line interface
+  - Professional formatting with clear command descriptions
+  - Command-specific help accessible via `sf_cli <command> --help`
+  - Better error handling with helpful guidance messages
+  - Improved argument parser structure for better command separation
+  - Exception handling for invalid commands and malformed arguments
+
+### Technical
+- Reorganized argument parser to properly separate commands and their options
+- Added comprehensive help functions for each command
+- Enhanced error handling with try-catch blocks
+- Updated version display across all help outputs
+
 ## [1.0.2] - 2024-12-19
 
 ### Added
